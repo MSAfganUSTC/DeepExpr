@@ -46,10 +46,11 @@ In this scenario, the system takes:
 
 ## 🎬 Driving Video Example
 
-[![Watch the video](Images/video_thumbnail.png)](Images/DEEPEXPR SID (Video as Driving).mp4)
-
-
-➡️ Click the thumbnail above to watch the 10-second video showing identity preservation and expression transfer using DeepExpr.
+[![Watch the video]
+<a href="Images/DEEPEXPR_SID_Video_as_Driving.mp4" download>
+  <img src="Images/video_thumbnail.png" alt="Download the video" width="480">
+</a>
+➡️ Click the thumbnail above to download the 10-second video showing identity preservation and expression transfer using SID.
 
 ---
 
