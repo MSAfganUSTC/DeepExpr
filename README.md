@@ -27,6 +27,7 @@ To overcome these limitations, we propose **DeepExpr**, a framework that enables
 ## 🧾 Framework Comparison Table
 <p align="center"> <img src="Images/Framwork_Comparison.png" alt="Evaluation Table: DeepExpr vs Existing Methods" width="700"/> </p>
 **Figure:** Evaluation of recent facial synthesis methods based on their ability to preserve identity, control expression and pose, and integrate contextual information. DeepExpr offers comprehensive control and fidelity compared to existing methods across all attributes.
+---
 ## 🧪 Module-wise Results and Comparisons
 
 ### 🧩 SID Module: Identity and Semantic Disentanglement
