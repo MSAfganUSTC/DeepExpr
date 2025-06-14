@@ -56,7 +56,7 @@ To overcome these limitations, we propose **DeepExpr**, a framework that enables
   <img src="Images/DeepExpr_inference.png" alt="DeepExpr Inference Pipeline" width="800"/>
 </p>
 
-> **Figure:** End-to-end inference flow using source image and expression/pose input from video or image.
+> **Figure:** End-to-end inference flow using source image and expression/pose.
 
 ---
 
@@ -68,7 +68,7 @@ To overcome these limitations, we propose **DeepExpr**, a framework that enables
   <img src="Images/DeepExprvsPersonalized.png" alt="Comparison with Personalized Diffusion Models" width="800"/>
 </p>
 
-> **Figure:** Identity and expression consistency improvement over personalized T2I diffusion models.
+> **Figure:** Identity-preserving facial expression and pose control with contextual background integration in personalized text-to-image diffusion models.
 
 ### DeepExpr vs Expression Editing Methods
 
@@ -76,7 +76,7 @@ To overcome these limitations, we propose **DeepExpr**, a framework that enables
   <img src="Images/DeepExprvsExpressio.png" alt="Comparison with Expression Editing Methods" width="800"/>
 </p>
 
-> **Figure:** Expression accuracy and alignment comparison with existing expression-control techniques.
+> **Figure:** Identity-preserving Expression accuracy and accurate pose alignment comparison with existing expression-control techniques.
 
 ---
 ## 📈 Comparison with Existing Personalized and Facial Expression Models
@@ -95,6 +95,7 @@ DeepExpr consistently outperforms prior models across:
 - Identity preservation
 - Expression accuracy
 - Pose alignment
+- Context integration
 
 It works effectively on:
 - Personalized image generation
