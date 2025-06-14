@@ -103,3 +103,95 @@ It works effectively on:
 - Forensic reconstruction using minimal supervision.
 
 ---
+# Supplementary Results for DeepExpr
+
+## 1. Additional Qualitative Examples
+
+Below are several examples demonstrating the expression and pose control of DeepExpr on diverse identities.
+## Visual Results
+
+### Example 1: Identity-Preserving Pose and Expression Variation Results for Male Subjects
+
+![Figure 3 - Male Results](images/png/Figure_3_More_results_Male_page1.png)  
+_Figure 1: Identity-preserving pose and expression variation results for male subjects._
+
+---
+
+### Example 2: Identity-Preserving Pose and Expression Variation Results for Female Subjects
+
+![Figure 4 - Female Results](images/png/Figure_4_More_results_Female_page1.png)  
+_Figure 2: Identity-preserving pose and expression variation results for female subjects._
+
+---
+
+### Example 3: Identity-Preserving Pose and Expression Variation Results for Young Boys and Girls Subjects
+
+![Figure 5 - Kids Results](images/png/Figure_5_More_results_Kids_page1.png)  
+_Figure 3: Pose and expression variation results for young boys and girls from diverse ethnic groups._
+
+---
+
+### Example 4: Identity-Preserving Pose and Expression Variation Results for Multiple Ethnic Groups
+
+![Figure 6 - Ethnic Results](images/png/Figure_6_More_results_Ethinic_page1.png)  
+_Figure 4: Pose and expression variation results across multiple ethnic groups._
+
+---
+
+### Example 5: Identity-Preserving Pose and Expression Variation Results for Cross-Identity and Reference Inputs
+
+![Figure 7 - Cross Identity Results](images/png/Figure_7_More_results_cross_page1.png)  
+_Figure 5: Results showing cross-identity and reference input variations._
+
+---
+
+### Example 6: Identity-Preserving Pose and Expression Variation for Extreme Orientations for both Reference and Identity Inputs
+
+![Figure 8 - Extreme Orientation Results](images/png/Figure_8_More_results_extream_page1.png)  
+_Figure 6: Results for extreme pose and expression orientations on both reference and identity inputs._
+
+---
+
+## 3. Ablation Study: Multi-Embedding Fusion Impact
+
+| Fusion Strategy          | Identity Preservation (%) | Expression Accuracy (%) | Pose Alignment Error (%) | Face FID (%) |
+|--------------------------|---------------------------|------------------------|---------------------------|--------------|
+| Direct Injection         |            85.3           |           78.5         |             50            |      70     |
+| **DeepExpr MEF (Ours)**  |           **90**          |         **84.4**       |            **86**         |      85     |
+
+*Table 2: Ablation results demonstrating the effectiveness of DeepExpr's multi-embedding fusion.*
+
+---
+## 4. Dataset Details and Preprocessing
+
+- We used three distinct datasets for training our Semantic and Identity Disentanglement (SID) encoding module:  
+  **HDTF** [57], **VoxCeleb** [58], and **VFHQ** [59].  
+- Original videos were carefully selected and processed consistently.  
+- Preprocessing included filtering out blurred faces and extreme head angles to ensure quality training data.
+- 
+- The results presented across multiple figures demonstrate DeepExpr’s strong performance and versatility across diverse categories, ethnicities, age groups, and extreme head orientations. It successfully preserves identity while generating realistic and varied facial expressions with accurate pose alignment.  
+- Identity images from the **CelebA-HQ** [28] dataset and reference images from **AffectNet** [29] were used to generate images with different expressions.
+
+### Preprocessing Instructions
+
+- Preprocessing scripts are available in the `/preprocess` folder.  
+- To get face crop suggestions for videos, use:  
+  ```bash
+  python crop-video.py --inp path/to/video.mp4
+
+
+## 5. Practical Applications
+
+- Emotion recognition datasets integration.
+- Forensic facial reconstruction support.
+- Facial behavior simulation for AI training.
+
+---
+
+# Contact & Support
+
+For questions, issues, or collaboration requests:  
+**[Muhammad Sher Afgan]** — [msafgan@mail.ustc.edu.cn]  
+GitHub: [https://github.com/yourusername/DeepExpr](https://github.com/yourusername/DeepExpr)  
+
+---
