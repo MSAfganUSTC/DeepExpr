@@ -164,21 +164,16 @@ _Figure 6: Results for extreme pose and expression orientations on both referenc
 ---
 ## 4. Dataset Details and Preprocessing
 
-- We used three distinct datasets for training our Semantic and Identity Disentanglement (SID) encoding module:  
-  **HDTF** [57], **VoxCeleb** [58], and **VFHQ** [59].  
+-We used three distinct datasets for training our Semantic and Identity Disentanglement (SID) encoding module:  
+- [**HDTF** (High-Definition Talking Faces)](https://hdtfdataset.org/)  
+- [**VoxCeleb**](http://www.robots.ox.ac.uk/~vgg/data/voxceleb/)  
+- [**VFHQ** (VoxCeleb Face HQ)](https://github.com/misbah4064/face-vid2vid)  
+
 - Original videos were carefully selected and processed consistently.  
 - Preprocessing included filtering out blurred faces and extreme head angles to ensure quality training data.
 - 
 - The results presented across multiple figures demonstrate DeepExpr’s strong performance and versatility across diverse categories, ethnicities, age groups, and extreme head orientations. It successfully preserves identity while generating realistic and varied facial expressions with accurate pose alignment.  
-- Identity images from the **CelebA-HQ** [28] dataset and reference images from **AffectNet** [29] were used to generate images with different expressions.
-
-### Preprocessing Instructions
-
-- Preprocessing scripts are available in the `/preprocess` folder.  
-- To get face crop suggestions for videos, use:  
-  ```bash
-  python crop-video.py --inp path/to/video.mp4
-
+- Identity images from the [**CelebA-HQ**](https://github.com/tkarras/progressive_growing_of_gans) dataset and reference images from [**AffectNet**](http://mohammadmahoor.com/affectnet/) were used to generate images with different expressions.
 
 ## 5. Practical Applications
 
