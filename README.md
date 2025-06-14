@@ -1,192 +1,259 @@
-# DeepExpr: Facial Expression and Pose Generation via Self-Supervised Disentangled Embeddings Fusion in Text-to-Image Diffusion Models
+# DeepExpr
+
+**Facial Expression and Pose Generation via Self-Supervised Disentangled Embeddings Fusion in Text-to-Image Diffusion Models**
+## 🔍 Overview
+
+**DeepExpr** addresses the limitations of existing text-to-image diffusion models in human-centric generation tasks, specifically facial expression and head pose control. While traditional models can render subjects in various textual contexts, they lack precision in manipulating key human attributes like **facial expression** and **pose** without degrading identity.
+To overcome these limitations, DeepExpr introduces a two-stage solution:
+- **Semantic and Identity Disentanglement (SID)** module  
+- **Multi-Embedding Fusion** module
+
+This repository includes the full implementation of the **SID module**.
+
+---
+## 🧠 Key Modules
+
+### 1. Semantic and Identity Disentanglement (SID) Module
+
+> 📦 `./modules/sid/`
+
+A self-supervised module that disentangles identity and semantic attributes (such as expressions and pose) from single or paired image frames.  
+It:
+- Utilizes frame-to-frame supervision from static or video data
+- Separates identity and expression into two independent latent spaces
+- Enables composable expression and pose conditioning with identity-preserving fidelity
+
+**Training SID:**
+```bash
+python train_sid.py --config configs/sid_config.yaml
+## 🖼️ Example Scenarios
+
+### 1. **Driving Video (Frame Sequence)**
+
+In this scenario, the system takes:
+- **Identity image**: A single static image of the subject (first column)
+- **Driving video**: A sequence of frames capturing target expressions and poses (second column)
+- **Generated sequence**: SID produces a series of synthesized images (third column) with the subject’s identity, but mimicking the expressions and poses from the video frames.
+
+📷 **Left to Right:**
+1. Identity reference image  
+2. Frame-by-frame driving video sequence  
+3. Output: Generated image sequence with matching expressions/poses
+
+---
+## 🎬 Driving Video Example
+
+[![Watch the video](images/video_thumbnail.png)](images/driving_video.mp4)
+
+➡️ Click the thumbnail above to watch the 10-second video showing identity preservation and expression transfer using DeepExpr.
+
+
+### 2. **Static Image Expression and pose Transfer**
+
+This setup uses:
+- **Identity image**: Static image of the subject
+- **Driving image**: A single static image with a target expression and pose
+- **Output**: A generated image with the subject’s identity and the driving image's expression/pose
+
+📷 **Left to Right:**
+1. Identity image  
+2. Reference expression image  
+3. Output: Expression-aligned synthesis
+
+## 🎬 Static-Image as reference Example
+![Generated Images](images/Readme_Static.png)
+*Generated Image with Modified Facial Expression and Head Pose*
+
+Both scenarios leverage the **SID module** for disentangling identity from expression/pose, ensuring identity preservation across dynamic or static conditioning inputs.
+
+### Installation
+
+We support ```python3```. To install the dependencies run:
+```
+pip install -r requirements.txt
+```
+
+### YAML configs
+
+There are several configuration (```config/dataset_name.yaml```) files one for each `dataset`. See ```config/taichi-256.yaml``` to get description of each parameter.
+
+
+### Pre-trained checkpoint
+Checkpoints can be found under folder named SID_Checkpoints: as sid-adv-cpk.pth and sid-cpk.pth.
+
+### Inference
+To run a Inference, download checkpoint and run the following command:
+```
+## 🎬 Running Inference
+
+You can run inference using either a driving **video sequence** or a **static image** as the driving reference.
+
+```bash
+python Inference.py \
+  --config config/dataset_name.yaml \
+  --driving_video path/to/driving_video_or_image \
+  --source_image path/to/source_image \
+  --checkpoint path/to/checkpoint \
+  --relative \
+  --adapt_scale
+```
+
+- `--driving_video` can be a **video file** (e.g., `videos/driving_video.mp4`) for driving with a frame sequence,  
+  or a **single image file** (e.g., `images/driving_image.png`) for driving with a static image reference.
+
+- `--source_image` is the identity image to preserve during generation.
 
 ---
 
-## 📜 Abstract
+### Example usage
 
-Text-to-image diffusion models have shown great potential in personalized image synthesis. However, they fall short in providing a dedicated framework for human-centric tasks. Specifically, while they can successfully render a person in new textual contexts or backgrounds, they lack precise control over critical human attributes such as facial expression and head pose.
+- Using a **video** as driving input:
 
-Recent efforts have attempted to bridge this gap by injecting externally learned embeddings into pre-trained text-to-image models. However, these approaches often fall short in ensuring accurate expression control and pose alignment, primarily due to the limited semantic capacity of the external embeddings. Furthermore, the direct injection of these embeddings tends to degrade facial fidelity and compromise identity preservation.
+```bash
+python Inference.py --config config/dataset_name.yaml --driving_video videos/driving_video.mp4 --source_image images/source.png --checkpoint checkpoints/model.ckpt --relative --adapt_scale
+```
 
-To overcome these limitations, we propose **DeepExpr**, a framework that enables precise control over facial expression and head pose while preserving identity across diverse visual contexts. DeepExpr comprises two key components:
+- Using a **static image** as driving input:
 
-1. **Semantic and Identity Disentanglement (SID)** — A self-supervised module leveraging frame-to-frame supervision to disentangle identity and expression representations.
-2. **Multi-Embedding Fusion (MEF)** — A mechanism to integrate these embeddings into pre-trained diffusion models without degrading fidelity.
-
----
-
-## 🧠 Framework Overview
-
-<p align="center">
-  <img src="Images/DeepExpr_Framework.png" alt="DeepExpr Framework" width="800"/>
-</p>
-
-> **Figure:** Overview of the DeepExpr framework showing disentangled fusion and expression control from reference input.
-
----
-## 🧾 Framework Comparison Table
-<p align="center"> <img src="Images/Framwork_Comparison.png" alt="Evaluation Table: DeepExpr vs Existing Methods" width="700"/> </p>
-**Figure:** Evaluation of recent facial synthesis methods based on their ability to preserve identity, control expression and pose, and integrate contextual information. DeepExpr offers comprehensive control and fidelity compared to existing methods across all attributes.
----
-## 🧪 Module-wise Results and Comparisons
-
-### 🧩 SID Module: Identity and Semantic Disentanglement
-
-<p align="center">
-  <img src="Images/SID_Comparison.png" alt="SID Comparison" width="800"/>
-</p>
-
-> **Figure:** Results from the SID module demonstrating identity preservation across expressions.
+```bash
+python Inference.py --config config/dataset_name.yaml --driving_video images/driving_image.png --source_image images/source.png --checkpoint checkpoints/model.ckpt --relative --adapt_scale
+```
 
 ---
 
-### 🧬 SID Evaluation: Cross-Renactment with Static and Video Driving
+### Output
 
-<p align="center">
-  <img src="Images/SID_Table_Cross_renechmnet_bothvideoand images.png" alt="Cross-Renactment Evaluation" width="800"/>
-</p>
+- For **video-driven inference**, the generated result will be saved as:
 
-> **Figure:** SID performance comparison on static image and video-based cross-expression reenactment tasks.
+  ```text
+  result.mp4
+  ```
 
----
+- For **static image-driven inference**, the generated result will be saved as:
 
-### 🌀 Inference Pipeline
+  ```text
+  result.png
+  ```
 
-<p align="center">
-  <img src="Images/DeepExpr_inference.png" alt="DeepExpr Inference Pipeline" width="800"/>
-</p>
+The driving videos, driving static images, and source identity images should be cropped before they can be used in our method. You can find example inputs in the `Inputs/` directory:
 
-> **Figure:** End-to-end inference flow using source image and expression/pose.
+```bash
+~/Deep_Expr_SID_Module/Inputs/
+├── driving static images/
+├── driving videos/
+└── Identites/
 
----
+or you can run:
 
-## ⚔️ DeepExpr vs Personalized and Expression-Centric Models
+```bash
+python crop-video.py --inp some_youtube_video.mp4
 
-### DeepExpr vs Personalized Diffusion Models
+git clone https://github.com/1adrianb/face-alignment
+cd face-alignment
+pip install -r requirements.txt
+python setup.py install
+```
 
-<p align="center">
-  <img src="Images/DeepExprvsPersonalized.png" alt="Comparison with Personalized Diffusion Models" width="800"/>
-</p>
+### Inference with Docker
 
-> **Figure:** Identity-preserving facial expression and pose control with contextual background integration in personalized text-to-image diffusion models.
+If you are having trouble getting the demo to work because of library compatibility issues,
+and you're running Linux, you might try running it inside a Docker container, which would
+give you better control over the execution environment.
 
-### DeepExpr vs Expression Editing Methods
+Requirements: Docker 19.03+ and [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+installed and able to successfully run the `nvidia-docker` usage tests.
 
-<p align="center">
-  <img src="Images/DeepExprvsExpressio.png" alt="Comparison with Expression Editing Methods" width="800"/>
-</p>
+We'll first build the container.
 
-> **Figure:** Identity-preserving Expression accuracy and accurate pose alignment comparison with existing expression-control techniques.
+```
+docker build -t DeepExpr_SID .
+```
 
----
-## 📈 Comparison with Existing Personalized and Facial Expression Models
+And now that we have the container available locally, we can use it to run the demo.
 
-<p align="center">
-  <img src="Images/DeeExpr_Table_personalized and FaceExpression methods .png" alt="Comparison Table with Baselines" width="800"/>
-</p>
+```
+docker run -it --rm --gpus all \
+       -v $HOME/DeepExpr:/app DeepExpr_SID_Module \
+       python3 Inference.py --config config/vox-256.yaml \
+           --driving_video driving.mp4 \
+           --Reference_image reference.png  \ 
+           --source_image Identity.png  \ 
+           --checkpoint sid-cpk.pth.tar \ 
+           --result_video result.mp4 \
+           --result_image result.png \
+           --relative --adapt_scale
+```
+### Training
 
-> **Figure:** Quantitative comparison of DeepExpr with baseline personalized and facial expression generation methods.
+To train a model on specific dataset run:
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 python run.py --config config/dataset_name.yaml --device_ids 0,1,2,3
+```
+The code will create a folder in the log directory (each run will create a time-stamped new directory).
+Checkpoints will be saved to this folder.
+To check the loss values during training see ```log.txt```.
+You can also check training data reconstructions in the ```train-vis``` subfolder.
+By default the batch size is tuned to run on 2 or 4 Titan-X gpu (apart from speed it does not make much difference). You can change the batch size in the train_params in corresponding ```.yaml``` file.
 
----
+### Evaluation on video reconstruction
 
-## 🔍 Reproducibility and Results
+To evaluate the reconstruction performance run:
+```
+CUDA_VISIBLE_DEVICES=0 python run.py --config config/dataset_name.yaml --mode reconstruction --checkpoint path/to/checkpoint
+```
+You will need to specify the path to the checkpoint,
+the ```reconstruction``` subfolder will be created in the checkpoint folder.
+The generated video will be stored to this folder, also generated videos will be stored in ```png``` subfolder in loss-less '.png' format for evaluation.
+Instructions for computing metrics from the paper can be found: https://github.com/AliaksandrSiarohin/pose-evaluation.
 
-DeepExpr consistently outperforms prior models across:
-- Identity preservation
-- Expression accuracy
-- Pose alignment
-- Context integration
+### Image animation
 
-It works effectively on:
-- Personalized image generation
-- Emotion behavior simulation
-- Forensic reconstruction using minimal supervision.
+In order to animate videos run:
+```
+CUDA_VISIBLE_DEVICES=0 python run.py --config config/dataset_name.yaml --mode animate --checkpoint path/to/checkpoint
+```
+You will need to specify the path to the checkpoint,
+the ```animation``` subfolder will be created in the same folder as the checkpoint.
+You can find the generated video there and its loss-less version in the ```png``` subfolder.
+By default video from test set will be randomly paired, but you can specify the "source,driving" pairs in the corresponding ```.csv``` files. The path to this file should be specified in corresponding ```.yaml``` file in pairs_list setting.
 
----
-# Supplementary Results for DeepExpr
+There are 2 different ways of performing animation:
+by using **absolute** keypoint locations or by using **relative** keypoint locations.
 
-## 1. Additional Qualitative Examples
+1) <i>Animation using absolute coordinates:</i> the animation is performed using the absolute positions of the driving video and appearance of the source image.
+In this way there are no specific requirements for the driving video and source appearance that is used.
+However this usually leads to poor performance since irrelevant details such as shape is transferred.
+Check animate parameters in ```taichi-256.yaml``` to enable this mode.
 
-Below are several examples demonstrating the expression and pose control of DeepExpr on diverse identities.
-## Visual Results
+<img src="sup-mat/absolute-demo.gif" width="512"> 
 
-### Example 1: Identity-Preserving Pose and Expression Variation Results for Male Subjects
+2) <i>Animation using relative coordinates:</i> from the driving video we first estimate the relative movement of each keypoint,
+then we add this movement to the absolute position of keypoints in the source image.
+This keypoint along with source image is used for animation. This usually leads to better performance, however this requires
+that the object in the first frame of the video and in the source image have the same pose
 
-![Figure 3 - Male Results](Images/Figure_3_More_results_Male.png)  
-_Figure 1: Identity-preserving pose and expression variation results for male subjects._
+<img src="sup-mat/relative-demo.gif" width="512"> 
 
----
 
-### Example 2: Identity-Preserving Pose and Expression Variation Results for Female Subjects
+### Datasets
 
-![Figure 4 - Female Results](Images/Figure_4_More_results_Female.png)  
-_Figure 2: Identity-preserving pose and expression variation results for female subjects._
+1) **Bair**. This dataset can be directly [downloaded](https://yadi.sk/d/Rr-fjn-PdmmqeA).
 
----
+2) **Mgif**. This dataset can be directly [downloaded](https://yadi.sk/d/5VdqLARizmnj3Q).
 
-### Example 3: Identity-Preserving Pose and Expression Variation Results for Young Boys and Girls Subjects
+3) **Fashion**. Follow the instruction on dataset downloading [from](https://vision.cs.ubc.ca/datasets/fashion/).
 
-![Figure 5 - Kids Results](Images/Figure_5_More_results_Kids.png)  
-_Figure 3: Pose and expression variation results for young boys and girls from diverse ethnic groups._
+4) **Taichi**. Follow the instructions in [data/taichi-loading](data/taichi-loading/README.md) or instructions from https://github.com/AliaksandrSiarohin/video-preprocessing. 
 
----
+5) **Nemo**. Please follow the [instructions](https://www.uva-nemo.org/) on how to download the dataset. Then the dataset should be preprocessed using scripts from https://github.com/AliaksandrSiarohin/video-preprocessing.
+ 
+6) **VoxCeleb**. Please follow the instruction from https://github.com/AliaksandrSiarohin/video-preprocessing.
 
-### Example 4: Identity-Preserving Pose and Expression Variation Results for Multiple Ethnic Groups
 
-![Figure 6 - Ethnic Results](Images/Figure_6_More_results_Ethinic.png)  
-_Figure 4: Pose and expression variation results across multiple ethnic groups._
+### Training on your own dataset
+1) Resize all the videos to the same size e.g 256x256, the videos can be in '.gif', '.mp4' or folder with images.
+We recommend the later, for each video make a separate folder with all the frames in '.png' format. This format is loss-less, and it has better i/o performance.
 
----
+2) Create a folder ```data/dataset_name``` with 2 subfolders ```train``` and ```test```, put training videos in the ```train``` and testing in the ```test```.
 
-### Example 5: Identity-Preserving Pose and Expression Variation Results for Cross-Identity and Reference Inputs
-
-![Figure 7 - Cross Identity Results](images/Figure_7_More_results_cross.png)  
-_Figure 5: Results showing cross-identity and reference input variations._
-
----
-
-### Example 6: Identity-Preserving Pose and Expression Variation for Extreme Orientations for both Reference and Identity Inputs
-
-![Figure 8 - Extreme Orientation Results](Images/Figure_8_More_results_extream.png)  
-_Figure 6: Results for extreme pose and expression orientations on both reference and identity inputs._
-
----
-
-## 3. Ablation Study: Multi-Embedding Fusion Impact
-
-| Fusion Strategy          | Identity Preservation (%) | Expression Accuracy (%) | Pose Alignment Error (%) | Face FID (%) |
-|--------------------------|---------------------------|------------------------|---------------------------|--------------|
-| Direct Injection         |            85.3           |           78.5         |             50            |      70     |
-| **DeepExpr MEF (Ours)**  |           **90**          |         **84.4**       |            **86**         |      85     |
-
-*Table 2: Ablation results demonstrating the effectiveness of DeepExpr's multi-embedding fusion.*
-
----
-## 4. Dataset Details and Preprocessing
-
--We used three distinct datasets for training our Semantic and Identity Disentanglement (SID) encoding module:  
-- [**HDTF** (High-Definition Talking Faces)](https://hdtfdataset.org/)  
-- [**VoxCeleb**](http://www.robots.ox.ac.uk/~vgg/data/voxceleb/)  
-- [**VFHQ** (VoxCeleb Face HQ)](https://github.com/misbah4064/face-vid2vid)  
-
-- Original videos were carefully selected and processed consistently.  
-- Preprocessing included filtering out blurred faces and extreme head angles to ensure quality training data.
-- 
-- The results presented across multiple figures demonstrate DeepExpr’s strong performance and versatility across diverse categories, ethnicities, age groups, and extreme head orientations. It successfully preserves identity while generating realistic and varied facial expressions with accurate pose alignment.  
-- Identity images from the [**CelebA-HQ**](https://github.com/tkarras/progressive_growing_of_gans) dataset and reference images from [**AffectNet**](http://mohammadmahoor.com/affectnet/) were used to generate images with different expressions.
-
-## 5. Practical Applications
-
-- Emotion recognition datasets integration.
-- Forensic facial reconstruction support.
-- Facial behavior simulation for AI training.
-
----
-
-# Contact & Support
-
-For questions, issues, or collaboration requests:  
-**[Muhammad Sher Afgan]** — [msafgan@mail.ustc.edu.cn]  
-GitHub: [https://github.com/yourusername/DeepExpr](https://github.com/yourusername/DeepExpr)  
-
----
+3) Create a config ```config/dataset_name.yaml```, in dataset_params specify the root dir the ```root_dir:  data/dataset_name```. Also adjust the number of epoch in train_params.
