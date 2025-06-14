@@ -46,7 +46,7 @@ In this scenario, the system takes:
 
 ## 🎬 Driving Video Example
 
-<a href="Images/DEEPEXPR_SID_Video_as_Driving.mp4" download>
+<a href="Images/DEEPEXPR SID (Video as Driving).mp4" download>
   <img src="Images/video_thumbnail.png" alt="Download the video" width="480">
 </a>
 
