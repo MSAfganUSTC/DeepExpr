@@ -48,6 +48,7 @@ In this scenario, the system takes:
 
 [![Watch the video](Images/video_thumbnail.png)](Images/DEEPEXPR SID (Video as Driving).mp4)
 
+
 ➡️ Click the thumbnail above to watch the 10-second video showing identity preservation and expression transfer using DeepExpr.
 
 ---
