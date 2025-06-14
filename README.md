@@ -103,13 +103,3 @@ It works effectively on:
 - Forensic reconstruction using minimal supervision.
 
 ---
-
-## 🧪 Inference Usage
-
-### Run with Video Driving Sequence
-```bash
-python Inference.py --config config/dataset_name.yaml \
-                    --driving_video path/to/driving.mp4 \
-                    --source_image path/to/source.png \
-                    --checkpoint path/to/checkpoint.pth \
-                    --relative --adapt_scale
