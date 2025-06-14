@@ -24,17 +24,9 @@ To overcome these limitations, we propose **DeepExpr**, a framework that enables
 > **Figure:** Overview of the DeepExpr framework showing disentangled fusion and expression control from reference input.
 
 ---
-
-## 📈 Comparison with Existing Personalized and Facial Expression Models
-
-<p align="center">
-  <img src="Images/DeeExpr_Table_personalized and FaceExpression methods .png" alt="Comparison Table with Baselines" width="800"/>
-</p>
-
-> **Figure:** Quantitative comparison of DeepExpr with baseline personalized and facial expression generation methods.
-
----
-
+## 🧾 Model Comparison Table
+<p align="center"> <img src="Images/Framwork_Comparisone.png" alt="Evaluation Table: DeepExpr vs Existing Methods" width="700"/> </p>
+Figure: Evaluation of recent facial synthesis methods based on their ability to preserve identity, control expression and pose, and integrate contextual information. DeepExpr offers comprehensive control and fidelity compared to existing methods across all attributes.
 ## 🧪 Module-wise Results and Comparisons
 
 ### 🧩 SID Module: Identity and Semantic Disentanglement
@@ -84,6 +76,15 @@ To overcome these limitations, we propose **DeepExpr**, a framework that enables
 </p>
 
 > **Figure:** Expression accuracy and alignment comparison with existing expression-control techniques.
+
+---
+## 📈 Comparison with Existing Personalized and Facial Expression Models
+
+<p align="center">
+  <img src="Images/DeeExpr_Table_personalized and FaceExpression methods .png" alt="Comparison Table with Baselines" width="800"/>
+</p>
+
+> **Figure:** Quantitative comparison of DeepExpr with baseline personalized and facial expression generation methods.
 
 ---
 
