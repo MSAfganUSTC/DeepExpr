@@ -112,42 +112,42 @@ Below are several examples demonstrating the expression and pose control of Deep
 
 ### Example 1: Identity-Preserving Pose and Expression Variation Results for Male Subjects
 
-![Figure 3 - Male Results](images/Figure_3_More_results_Male_page1.png)  
+![Figure 3 - Male Results](images/Figure_3_More_results_Male.png)  
 _Figure 1: Identity-preserving pose and expression variation results for male subjects._
 
 ---
 
 ### Example 2: Identity-Preserving Pose and Expression Variation Results for Female Subjects
 
-![Figure 4 - Female Results](images/Figure_4_More_results_Female_page1.png)  
+![Figure 4 - Female Results](images/Figure_4_More_results_Female.png)  
 _Figure 2: Identity-preserving pose and expression variation results for female subjects._
 
 ---
 
 ### Example 3: Identity-Preserving Pose and Expression Variation Results for Young Boys and Girls Subjects
 
-![Figure 5 - Kids Results](images/Figure_5_More_results_Kids_page1.png)  
+![Figure 5 - Kids Results](images/Figure_5_More_results_Kids.png)  
 _Figure 3: Pose and expression variation results for young boys and girls from diverse ethnic groups._
 
 ---
 
 ### Example 4: Identity-Preserving Pose and Expression Variation Results for Multiple Ethnic Groups
 
-![Figure 6 - Ethnic Results](images/Figure_6_More_results_Ethinic_page1.png)  
+![Figure 6 - Ethnic Results](images/Figure_6_More_results_Ethinic.png)  
 _Figure 4: Pose and expression variation results across multiple ethnic groups._
 
 ---
 
 ### Example 5: Identity-Preserving Pose and Expression Variation Results for Cross-Identity and Reference Inputs
 
-![Figure 7 - Cross Identity Results](images/Figure_7_More_results_cross_page1.png)  
+![Figure 7 - Cross Identity Results](images/Figure_7_More_results_cross.png)  
 _Figure 5: Results showing cross-identity and reference input variations._
 
 ---
 
 ### Example 6: Identity-Preserving Pose and Expression Variation for Extreme Orientations for both Reference and Identity Inputs
 
-![Figure 8 - Extreme Orientation Results](images/png/Figure_8_More_results_extream_page1.png)  
+![Figure 8 - Extreme Orientation Results](images/Figure_8_More_results_extream.png)  
 _Figure 6: Results for extreme pose and expression orientations on both reference and identity inputs._
 
 ---
