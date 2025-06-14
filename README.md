@@ -112,28 +112,28 @@ Below are several examples demonstrating the expression and pose control of Deep
 
 ### Example 1: Identity-Preserving Pose and Expression Variation Results for Male Subjects
 
-![Figure 3 - Male Results](images/Figure_3_More_results_Male.png)  
+![Figure 3 - Male Results](Images/Figure_3_More_results_Male.png)  
 _Figure 1: Identity-preserving pose and expression variation results for male subjects._
 
 ---
 
 ### Example 2: Identity-Preserving Pose and Expression Variation Results for Female Subjects
 
-![Figure 4 - Female Results](images/Figure_4_More_results_Female.png)  
+![Figure 4 - Female Results](Images/Figure_4_More_results_Female.png)  
 _Figure 2: Identity-preserving pose and expression variation results for female subjects._
 
 ---
 
 ### Example 3: Identity-Preserving Pose and Expression Variation Results for Young Boys and Girls Subjects
 
-![Figure 5 - Kids Results](images/Figure_5_More_results_Kids.png)  
+![Figure 5 - Kids Results](Images/Figure_5_More_results_Kids.png)  
 _Figure 3: Pose and expression variation results for young boys and girls from diverse ethnic groups._
 
 ---
 
 ### Example 4: Identity-Preserving Pose and Expression Variation Results for Multiple Ethnic Groups
 
-![Figure 6 - Ethnic Results](images/Figure_6_More_results_Ethinic.png)  
+![Figure 6 - Ethnic Results](Images/Figure_6_More_results_Ethinic.png)  
 _Figure 4: Pose and expression variation results across multiple ethnic groups._
 
 ---
@@ -147,7 +147,7 @@ _Figure 5: Results showing cross-identity and reference input variations._
 
 ### Example 6: Identity-Preserving Pose and Expression Variation for Extreme Orientations for both Reference and Identity Inputs
 
-![Figure 8 - Extreme Orientation Results](images/Figure_8_More_results_extream.png)  
+![Figure 8 - Extreme Orientation Results](Images/Figure_8_More_results_extream.png)  
 _Figure 6: Results for extreme pose and expression orientations on both reference and identity inputs._
 
 ---
